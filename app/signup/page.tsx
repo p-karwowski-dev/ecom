@@ -3,20 +3,19 @@
 import { FormSection } from '../../components/form/FormSection'
 
 export default function Login() {
-  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget as HTMLFormElement)
-    console.log(event.currentTarget)
-    console.log(formData.get('lastName'))
+  const formAction = async (formData: FormData) => {
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`)
+    }
   }
 
   return (
     <section className="p-10 flex flex-col">
       <div className="flex justify-center pb-4">
-        <h1 className="font-bold text-2xl">Create account your account</h1>
+        <h1 className="font-bold text-2xl">Create your account</h1>
       </div>
       <form
-        onSubmit={submitHandler}
+        action={formAction}
         className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 lg:w-[800px]"
       >
         <FormSection id="firstName" title="First name" type="text" />
@@ -29,7 +28,6 @@ export default function Login() {
           title="Repeat password"
           type="password"
         />
-        <input type="submit" placeholder="save" />
         <div className="col-span-6 flex justify-center">
           <button
             type="submit"

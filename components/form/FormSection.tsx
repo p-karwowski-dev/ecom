@@ -7,10 +7,10 @@ interface FormSectionProps {
 export const FormSection = ({ id, type, title }: FormSectionProps) => {
   return (
     <>
-      {/* <div className="sm:col-span-3"> */}
-      <label htmlFor={id}>{title}</label>
-      <input id={id} type={type} placeholder={title} />
-      {/* </div> */}
+      <div className="sm:col-span-3">
+        <label htmlFor={id}>{title}</label>
+        <input id={id} name={id} type={type} placeholder={title} />
+      </div>
     </>
   )
 }

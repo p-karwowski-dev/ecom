@@ -62,7 +62,6 @@ function SocialIco({ href, pathD }: { href: string; pathD: string }) {
       href={href}
       target="_blank"
       className="text-gray-400 hover:text-white"
-      fill-rule="evenodd"
       aria-hidden="true"
     >
       <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
