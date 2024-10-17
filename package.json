@@ -10,12 +10,15 @@
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "clsx": "^2.1.1",
     "next": "14.2.14",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.53.0",
     "save-dev": "^0.0.1-security",
-    "tailwind-merge": "^2.5.2"
+    "tailwind-merge": "^2.5.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/jest": "^29.5.13",

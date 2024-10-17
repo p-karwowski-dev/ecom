@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ComponentProps, ReactNode } from 'react'
-import { cn } from '@/public/styles/utils'
+import { cn } from '@/app/util/cn'
 
 export function Nav({ children }: { children: ReactNode }) {
   return (
