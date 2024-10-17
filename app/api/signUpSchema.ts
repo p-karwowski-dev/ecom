@@ -2,10 +2,10 @@ import { z } from 'zod'
 
 export const signUpSchema = z.object({
   firstName: z.string().trim().min(2, {
-    message: 'Required',
+    message: 'Invalid first name',
   }),
   lastName: z.string().trim().min(2, {
-    message: 'Required',
+    message: 'Invalid second name',
   }),
   email: z.string().trim().email({
     message: 'Invalid email address',

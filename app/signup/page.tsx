@@ -11,8 +11,6 @@ import { onSignUpAction } from '../api/onSignUpAction'
 import { useFormState } from 'react-dom'
 import { useRef } from 'react'
 
-// Fix the issue with resetting the message state after a successful form submission
-
 export default function Login() {
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -29,6 +27,7 @@ export default function Login() {
     defaultValues: {
       email: '@gmail.com',
       repeatEmail: '@gmail.com',
+      ...(state?.fields ?? {}),
     },
   })
 
