@@ -18,6 +18,9 @@ const cmsSlice = createSlice({
   reducers: {
     toggleEditMode(state) {
       state.isEditMode = !state.isEditMode
+      if (!state.isEditMode) {
+        resetState(state)
+      }
     },
     selectSection(state, action: PayloadAction<SectionInfo>) {
       const { section, sectionNo } = action.payload
@@ -31,9 +34,15 @@ const cmsSlice = createSlice({
       state.timeStamp = timeStamp
       if (primaryText) state.section.primaryText = primaryText
       if (secondaryText) state.section.secondaryText = secondaryText
+      if (!primaryText && !secondaryText) resetState(state)
     })
   },
 })
+
+function resetState(state: CmsState) {
+  state.section = { ...initialState.section }
+  state = initialState
+}
 
 export const { selectSection, toggleEditMode } = cmsSlice.actions
 export default cmsSlice.reducer

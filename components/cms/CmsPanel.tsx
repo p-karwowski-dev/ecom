@@ -1,3 +1,4 @@
+import { saveSection } from '../../appState/cms/cmsThunk'
 import { editSection } from '../../appState/cms/externalActions'
 import { useAppDispatch, useAppSelector } from '../../appState/storeHooks'
 import { ChangeEvent } from 'react'
@@ -6,6 +7,7 @@ export default function CmsPanel() {
   const dispatch = useAppDispatch()
   const isEditing = useAppSelector((state) => state.cms.isEditMode)
   const sectionNo = useAppSelector((state) => state.cms.sectionNo)
+  const isChanged = useAppSelector((state) => state.cms.timeStamp)
 
   function handleEdit(event: ChangeEvent<HTMLTextAreaElement>) {
     event.preventDefault()
@@ -39,7 +41,7 @@ export default function CmsPanel() {
             htmlFor="secondaryText"
             className="text-white text-center mt-4"
           >
-            Content
+            Paragraph
           </label>
           <textarea
             id="secondaryText"
@@ -47,12 +49,18 @@ export default function CmsPanel() {
             className="rounded-md p-2"
             rows={20}
             cols={40}
+            onChange={handleEdit}
           />
         </form>
         <button
+          onClick={(e) => {
+            e.preventDefault()
+            dispatch(saveSection())
+          }}
           className="mt-4 bg-white text-blue-600 px-4 py-2 rounded-md"
           form="editForm"
           type="submit"
+          disabled={!isChanged}
         >
           Save
         </button>

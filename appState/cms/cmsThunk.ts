@@ -1,9 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { IntroductionPage } from './types'
 import { RootState } from '../store'
+import { Section } from './types'
+
+interface SaveData extends Section {
+  timeStamp: string
+  sectionNo: number | null
+}
 
 const cmsAPI = {
-  save: async (data: IntroductionPage) => {
+  save: async (data: SaveData) => {
     const response = await fetch('/cms', {
       method: 'POST',
       headers: {
@@ -20,12 +25,14 @@ const cmsAPI = {
   },
 }
 
-export const saveIntroductionPage = createAsyncThunk(
-  'cms/saveIntroductionPage',
+export const saveSection = createAsyncThunk(
+  'cms/saveSection',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState() as RootState
+    const { timeStamp, sectionNo, section } = state.cms
+    if (!timeStamp) return
     try {
-      const response = await cmsAPI.save(state.cms.introductionPage)
+      const response = await cmsAPI.save({ timeStamp, sectionNo, ...section })
       return response.data
     } catch {
       return thunkAPI.rejectWithValue('Failed to save Introduction Page')

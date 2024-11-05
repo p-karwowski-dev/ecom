@@ -1,6 +1,14 @@
+'use client'
 import Image from 'next/image'
+import { useAppSelector } from '../../appState/storeHooks'
 
 export default function Service() {
+  const isEdited = useAppSelector((state) => !!state.cms.timeStamp)
+  const sectionNo = useAppSelector((state) => state.cms.sectionNo)
+  const { primaryText, secondaryText } = useAppSelector(
+    (state) => state.cms.section
+  )
+
   return (
     <section className="">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
@@ -32,7 +40,7 @@ export default function Service() {
                 src="/images/introduction.jpeg"
                 className="mx-auto my-auto rounded-2xl"
               />
-            </figure>{' '}
+            </figure>
             <div className="flex justify-center flex-col space-y-2">
               <div className="font-semibold">Mea Anderson</div>
               <div className="text-gray-600">Professional coach</div>
@@ -61,6 +69,13 @@ export default function Service() {
           making it look like readable English. Many desktop publishing packages
           and web page editors now use Lorem Ipsum as their default model text.
         </p>
+
+        {isEdited && !sectionNo && (
+          <>
+            <h2 className="text-xl font-semibold my-4">{primaryText || ''}</h2>
+            <p>{secondaryText || ''}</p>
+          </>
+        )}
       </article>
     </section>
   )
