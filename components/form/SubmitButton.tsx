@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from 'react'
 import { useFormStatus } from 'react-dom'
-import { cn } from '../../app/util/cn'
+import { cn } from '../../app/utils/cn'
 
 export function FormSubmitBtn({
   ...rest

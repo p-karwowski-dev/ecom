@@ -33,6 +33,7 @@ export const saveSection = createAsyncThunk(
     if (!timeStamp) return
     try {
       const response = await cmsAPI.save({ timeStamp, sectionNo, ...section })
+      if (!response.ok) throw new Error('Something went wrong')
       return response.data
     } catch {
       return thunkAPI.rejectWithValue('Failed to save Introduction Page')

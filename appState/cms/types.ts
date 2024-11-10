@@ -14,3 +14,10 @@ export type SectionInfo = {
   sectionNo: number
   section: Section
 }
+
+export interface ReqError {
+  status: number
+  data: {
+    error: string
+  }
+}

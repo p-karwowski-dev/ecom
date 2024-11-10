@@ -1,7 +1,7 @@
 'use client'
 import { MdEditSquare } from 'react-icons/md'
 import { useAppDispatch, useAppSelector } from '@/appState/storeHooks'
-import { cn } from '@/app/util/cn'
+import { cn } from '@/app/utils/cn'
 import { toggleEditMode } from '../../appState/cms/cmsSlice'
 
 export function CmsButton() {
